@@ -893,6 +893,119 @@
     margin-bottom: 4px;
   }
 
+  /* ═══════════ ROLES ═══════════ */
+  .roles {
+    padding: 180px 0;
+    border-top: 1px solid var(--line);
+    background:
+      linear-gradient(180deg, var(--paper) 0%, var(--paper-2) 100%);
+    position: relative;
+  }
+  .roles::before {
+    content: "職";
+    position: absolute;
+    top: 80px; left: 40px;
+    font-family: 'Noto Serif SC', serif;
+    font-weight: 900;
+    font-size: 420px;
+    color: var(--ink);
+    opacity: 0.05;
+    line-height: 1;
+    pointer-events: none;
+  }
+  .roles-inner { position: relative; z-index: 2; }
+  .roles-header { margin-bottom: 80px; max-width: 760px; }
+  .roles-lede {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-style: italic;
+    font-weight: 300;
+    color: var(--ink-soft);
+    line-height: 1.7;
+    margin-top: 20px;
+  }
+  .roles-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0;
+    border-top: 1px solid var(--ink);
+    border-left: 1px solid var(--ink);
+  }
+  .role-card {
+    padding: 40px 44px 44px;
+    border-right: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    background: rgba(255,251,235,0.35);
+    transition: all 0.4s;
+    position: relative;
+  }
+  .role-card:hover {
+    background: rgba(255,251,235,0.9);
+    transform: translateY(-2px);
+  }
+  .role-card:hover .role-num { color: var(--cinnabar); }
+  .role-card:hover .role-arrow { color: var(--cinnabar); transform: translateX(6px); }
+  .role-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 14px;
+    font-style: italic;
+    font-weight: 400;
+    color: var(--gold);
+    letter-spacing: 0.15em;
+    margin-bottom: 14px;
+    transition: color 0.3s;
+  }
+  .role-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 400;
+    line-height: 1.2;
+    margin-bottom: 6px;
+    color: var(--ink);
+  }
+  .role-card h3 em { font-style: italic; color: var(--cinnabar); }
+  .role-focus {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 12px;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 18px;
+  }
+  .role-desc {
+    font-family: 'Playfair Display', serif;
+    font-size: 15px;
+    line-height: 1.75;
+    color: var(--ink-soft);
+    font-weight: 300;
+  }
+  .role-arrow {
+    display: inline-block;
+    margin-top: 20px;
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    color: var(--ink-mute);
+    transition: all 0.3s;
+  }
+  .roles-footnote {
+    margin-top: 56px;
+    text-align: center;
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 18px;
+    color: var(--ink-soft);
+  }
+  .roles-footnote a {
+    color: var(--cinnabar);
+    text-decoration: none;
+    border-bottom: 1px solid var(--cinnabar);
+    padding-bottom: 2px;
+  }
+  .roles-footnote a:hover { color: var(--cinnabar-deep); }
+  @media (max-width: 900px) {
+    .roles-grid { grid-template-columns: 1fr; }
+  }
+
   /* ═══════════ JOIN US ═══════════ */
   .join {
     padding: 180px 0;
@@ -1152,6 +1265,7 @@
     <a href="#pillars">Pillars</a>
     <a href="#founders">Founders</a>
     <a href="#whatwedo">Programs</a>
+    <a href="#roles">Roles</a>
     <a href="#join">Join</a>
   </div>
 </nav>
@@ -1652,6 +1766,151 @@
   </div>
 </section>
 
+<!-- ═══════════ ROLES ═══════════ -->
+<section class="roles" id="roles">
+  <div class="container">
+    <div class="roles-inner">
+      <div class="roles-header">
+        <div class="sec-eyebrow">Chapter IV · Open Positions</div>
+        <h2 class="sec-title">Open <em>Roles.</em></h2>
+        <div class="sec-sub">十席虚位 · 各待其人</div>
+        <p class="roles-lede">
+          We are building a world-class founding team. Ten seats at the
+          table — each one a different kind of expertise, each one equally
+          essential. Find the one that matches your instinct.
+        </p>
+      </div>
+
+      <div class="roles-grid">
+        <a href="mailto:hilabdvc@gmail.com?subject=H%26I%20Lab%20Role%20Application%20%E2%80%94%20AI%20Projects%20Director" class="role-card">
+          <div class="role-num">Role N° 01</div>
+          <h3><em>AI Projects</em> Director</h3>
+          <div class="role-focus">LLMs · RAG · Prompt Engineering</div>
+          <p class="role-desc">
+            Lead the AI course curriculum and drive technical direction for
+            AI × Culture projects. Serves as the bridge between modern
+            language models and the cultural content we care about.
+          </p>
+          <div class="role-arrow">Apply →</div>
+        </a>
+
+        <a href="mailto:hilabdvc@gmail.com?subject=H%26I%20Lab%20Role%20Application%20%E2%80%94%20Events%20Director" class="role-card">
+          <div class="role-num">Role N° 02</div>
+          <h3><em>Events</em> Director</h3>
+          <div class="role-focus">Festivals · Carnivals · Markets</div>
+          <p class="role-desc">
+            Plan and execute Festive Labs, Cultural Carnivals, and themed
+            events — from first ideation to day-of management. For the
+            organized mind that loves bringing people together.
+          </p>
+          <div class="role-arrow">Apply →</div>
+        </a>
+
+        <a href="mailto:hilabdvc@gmail.com?subject=H%26I%20Lab%20Role%20Application%20%E2%80%94%20Social%20Media%20Officer" class="role-card">
+          <div class="role-num">Role N° 03</div>
+          <h3><em>Social Media</em> Officer</h3>
+          <div class="role-focus">@hi_dvc · Brand · Storytelling</div>
+          <p class="role-desc">
+            Run @hi_dvc on Instagram and beyond. Create content, ship
+            campaigns, build the visual brand. A strong eye for aesthetics
+            and narrative is non-negotiable.
+          </p>
+          <div class="role-arrow">Apply →</div>
+        </a>
+
+        <a href="mailto:hilabdvc@gmail.com?subject=H%26I%20Lab%20Role%20Application%20%E2%80%94%20Business%20Operations%20Officer" class="role-card">
+          <div class="role-num">Role N° 04</div>
+          <h3><em>Business</em> Operations</h3>
+          <div class="role-focus">Revenue · Analytics · Pricing</div>
+          <p class="role-desc">
+            Lead Creative Market pricing, revenue analytics, and help us
+            explore sustainable AI + Culture monetization. For the
+            numbers-driven mind with entrepreneurial instincts.
+          </p>
+          <div class="role-arrow">Apply →</div>
+        </a>
+
+        <a href="mailto:hilabdvc@gmail.com?subject=H%26I%20Lab%20Role%20Application%20%E2%80%94%20Culture%20Research%20Officer" class="role-card">
+          <div class="role-num">Role N° 05</div>
+          <h3><em>Culture</em> Research</h3>
+          <div class="role-focus">文修课 · Heritage · Curation</div>
+          <p class="role-desc">
+            Curate and co-teach monthly Culture Courses. Deep knowledge of
+            Chinese or East Asian heritage required — your job is to keep
+            every piece of cultural content accurate, respectful, alive.
+          </p>
+          <div class="role-arrow">Apply →</div>
+        </a>
+
+        <a href="mailto:hilabdvc@gmail.com?subject=H%26I%20Lab%20Role%20Application%20%E2%80%94%20Project%20Manager" class="role-card">
+          <div class="role-num">Role N° 06</div>
+          <h3><em>Project</em> Manager</h3>
+          <div class="role-focus">Rotating · Digital Revival</div>
+          <p class="role-desc">
+            Lead a specific Digital Revival project — "Converse with Li
+            Bai," ancient text restoration, whatever we're building next.
+            Rotating seat: open to any active member.
+          </p>
+          <div class="role-arrow">Apply →</div>
+        </a>
+
+        <a href="mailto:hilabdvc@gmail.com?subject=H%26I%20Lab%20Role%20Application%20%E2%80%94%20Content%20Creator%20%26%20Photographer" class="role-card">
+          <div class="role-num">Role N° 07</div>
+          <h3><em>Content</em> Creator</h3>
+          <div class="role-focus">Photography · Video · Design</div>
+          <p class="role-desc">
+            Capture events, edit short-form video, document the lab's
+            first chapter. Skills in photography, video editing, or
+            graphic design — and an instinct for what deserves a frame.
+          </p>
+          <div class="role-arrow">Apply →</div>
+        </a>
+
+        <a href="mailto:hilabdvc@gmail.com?subject=H%26I%20Lab%20Role%20Application%20%E2%80%94%20Market%20Booth%20Coordinator" class="role-card">
+          <div class="role-num">Role N° 08</div>
+          <h3><em>Market</em> Coordinator</h3>
+          <div class="role-focus">Inventory · Logistics · Booth Ops</div>
+          <p class="role-desc">
+            Organize the H&I Creative Markets end-to-end: inventory,
+            vendor relations, booth setup, day-of operations. For the
+            detail-oriented and hands-on.
+          </p>
+          <div class="role-arrow">Apply →</div>
+        </a>
+
+        <a href="mailto:hilabdvc@gmail.com?subject=H%26I%20Lab%20Role%20Application%20%E2%80%94%20AI%20Course%20Instructor" class="role-card">
+          <div class="role-num">Role N° 09</div>
+          <h3><em>AI Course</em> Instructor</h3>
+          <div class="role-focus">智修课 · Technical Instruction</div>
+          <p class="role-desc">
+            Design and teach a monthly AI hands-on session — LoRA
+            fine-tuning, RAG, AIGC tools, Python analytics. Comfortable
+            making technical content legible to mixed-level audiences.
+          </p>
+          <div class="role-arrow">Apply →</div>
+        </a>
+
+        <a href="mailto:hilabdvc@gmail.com?subject=H%26I%20Lab%20Role%20Application%20%E2%80%94%20Culture%20Course%20Instructor" class="role-card">
+          <div class="role-num">Role N° 10</div>
+          <h3><em>Culture Course</em> Instructor</h3>
+          <div class="role-focus">文修课 · Cultural Expertise</div>
+          <p class="role-desc">
+            Research and deliver a monthly themed culture lecture with
+            interactive elements. Topic expertise in a traditional
+            Chinese or East Asian cultural domain required.
+          </p>
+          <div class="role-arrow">Apply →</div>
+        </a>
+      </div>
+
+      <div class="roles-footnote">
+        Don't see your role? We're also listening —
+        <a href="mailto:hilabdvc@gmail.com?subject=H%26I%20Lab%20%E2%80%94%20I%20have%20an%20idea">write to us directly</a>.
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ═══════════ JOIN ═══════════ -->
 <section class="join" id="join">
   <div class="container">
@@ -1695,6 +1954,8 @@
 
       <div class="join-cta">
         <a href="#meeting" class="btn-primary">See You On April 14</a>
+        <a href="https://dvc.campuslabs.com/engage/" target="_blank" rel="noopener" class="btn-text">Become a Member · DVCSync</a>
+        <a href="#roles" class="btn-text">Apply for a Role</a>
         <a href="https://instagram.com/hi_dvc" target="_blank" rel="noopener" class="btn-text">@hi_dvc on Instagram</a>
         <a href="https://discord.gg/6C4Dyz82" target="_blank" rel="noopener" class="btn-text">Join our Discord</a>
       </div>
@@ -1715,43 +1976,43 @@
         </p>
       </div>
       <div class="resource-list">
-        <a href="#" class="resource-item">
+        <a href="https://taohaoze7-prog.github.io/hi-lab-dvc/hi_lab_proposal.html" target="_blank" rel="noopener" class="resource-item">
           <div class="roman">i</div>
           <div>
-            <h4>Club Charter</h4>
-            <div class="zh">俱乐部章程</div>
+            <h4>Club Charter & Constitution</h4>
+            <div class="zh">俱乐部章程 · 三大支柱 · 组织架构</div>
           </div>
           <div class="arrow">→</div>
         </a>
-        <a href="#" class="resource-item">
+        <a href="#meeting" class="resource-item">
           <div class="roman">ii</div>
           <div>
             <h4>Event Calendar</h4>
-            <div class="zh">活动日历</div>
+            <div class="zh">活动日历 · First Meeting April 14</div>
           </div>
           <div class="arrow">→</div>
         </a>
-        <a href="#" class="resource-item">
+        <a href="#roles" class="resource-item">
           <div class="roman">iii</div>
           <div>
-            <h4>Open AI Curriculum</h4>
-            <div class="zh">开源 AI 课程</div>
+            <h4>Open Roles · Apply</h4>
+            <div class="zh">十席虚位 · 各待其人</div>
           </div>
           <div class="arrow">→</div>
         </a>
-        <a href="#" class="resource-item">
+        <a href="https://dvc.campuslabs.com/engage/" target="_blank" rel="noopener" class="resource-item">
           <div class="roman">iv</div>
           <div>
-            <h4>Reading List</h4>
-            <div class="zh">推荐阅读</div>
+            <h4>DVCSync Membership</h4>
+            <div class="zh">DVCSync 官方注册入口</div>
           </div>
           <div class="arrow">→</div>
         </a>
-        <a href="#" class="resource-item">
+        <a href="https://github.com/taohaoze7-prog/hi-dvc-site" target="_blank" rel="noopener" class="resource-item">
           <div class="roman">v</div>
           <div>
             <h4>Project Repository</h4>
-            <div class="zh">项目仓库</div>
+            <div class="zh">项目仓库 · Open Source</div>
           </div>
           <div class="arrow">→</div>
         </a>
@@ -1774,12 +2035,13 @@
         <a href="#pillars">Philosophy</a>
         <a href="#whatwedo">Programs</a>
         <a href="#founders">The Cohort</a>
+        <a href="#roles">Open Roles</a>
       </div>
       <div class="footer-col">
         <h4>Events</h4>
-        <a href="#meeting">First Meeting</a>
-        <a href="#">Festive Lab</a>
-        <a href="#">Culture Market</a>
+        <a href="#meeting">First Meeting · April 14</a>
+        <a href="#whatwedo">Festive Lab</a>
+        <a href="#whatwedo">Culture Market</a>
       </div>
       <div class="footer-col">
         <h4>Connect</h4>
@@ -1789,9 +2051,10 @@
       </div>
       <div class="footer-col">
         <h4>Institution</h4>
-        <a href="#">Diablo Valley College</a>
-        <a href="#">Spring MMXXVI</a>
-        <a href="#resources">Charter & Resources</a>
+        <a href="https://www.dvc.edu/" target="_blank" rel="noopener">Diablo Valley College</a>
+        <a href="https://dvc.campuslabs.com/engage/" target="_blank" rel="noopener">DVCSync</a>
+        <a href="https://taohaoze7-prog.github.io/hi-lab-dvc/hi_lab_proposal.html" target="_blank" rel="noopener">Charter & Constitution</a>
+        <a href="#resources">All Resources</a>
       </div>
     </div>
     <div class="footer-bottom">
