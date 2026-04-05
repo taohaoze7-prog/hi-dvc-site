@@ -1,0 +1,1814 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>H&I Laboratory · Heritage Meets Intelligence · DVC</title>
+<meta name="description" content="H&I Lab (Heritage & Intelligence Laboratory) — a student-founded laboratory at Diablo Valley College where 1,300 years of cultural heritage meets modern artificial intelligence.">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<meta property="og:title" content="H&I Laboratory · Heritage Meets Intelligence">
+<meta property="og:description" content="Where 1,300 years of cultural heritage learns to speak the language of modern machines. Spring 2026 · Diablo Valley College.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="og-image.svg">
+<meta property="og:url" content="https://hi-dvc.github.io/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="H&I Laboratory · Heritage Meets Intelligence">
+<meta name="twitter:description" content="Where 1,300 years of cultural heritage meets modern AI. Spring 2026 · DVC.">
+<meta name="twitter:image" content="og-image.svg">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500&family=Noto+Serif+SC:wght@300;400;500;700;900&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #f4ecd8;
+    --paper-2: #eee3c8;
+    --paper-3: #e4d7b5;
+    --ink: #1a2332;
+    --ink-soft: #3a4658;
+    --ink-mute: #6b7585;
+    --cinnabar: #b8201c;
+    --cinnabar-deep: #8a1512;
+    --gold: #8a6a3a;
+    --line: #c4b890;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Playfair Display', 'Noto Serif SC', serif;
+    line-height: 1.6;
+    font-weight: 400;
+    overflow-x: hidden;
+    background-image:
+      radial-gradient(ellipse at top, rgba(184,32,28,0.02), transparent 60%),
+      radial-gradient(ellipse at bottom, rgba(138,106,58,0.04), transparent 60%);
+  }
+
+  /* Paper texture */
+  body::before {
+    content: "";
+    position: fixed; inset: 0; pointer-events: none; z-index: 1;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+    opacity: 0.12; mix-blend-mode: multiply;
+  }
+
+  /* Chinese text rendering */
+  :lang(zh), .zh-text { line-height: 1.9; letter-spacing: 0.02em; }
+
+  .container { max-width: 1240px; margin: 0 auto; padding: 0 64px; position: relative; z-index: 2; }
+
+  /* ═══════════ NAV ═══════════ */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    padding: 26px 64px;
+    display: flex; justify-content: space-between; align-items: center;
+    background: rgba(244,236,216,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(196,184,144,0.3);
+    transition: padding 0.3s;
+  }
+  nav.scrolled { padding: 18px 64px; }
+  .logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px; font-weight: 400;
+    font-style: italic;
+    color: var(--ink);
+    letter-spacing: 0.02em;
+    text-decoration: none;
+  }
+  .logo em { color: var(--cinnabar); font-style: normal; font-weight: 500; }
+  .nav-links { display: flex; gap: 32px; font-family: 'Inter', sans-serif; font-size: 11px; letter-spacing: 0.25em; text-transform: uppercase; }
+  .nav-links a { color: var(--ink-soft); text-decoration: none; transition: color 0.3s; }
+  .nav-links a:hover { color: var(--cinnabar); }
+
+  /* ═══════════ HERO ═══════════ */
+  .hero {
+    min-height: 100vh;
+    display: flex; align-items: center;
+    position: relative;
+    padding: 140px 0 100px;
+  }
+  .hero-layout {
+    display: grid;
+    grid-template-columns: 60px 1fr 1fr;
+    gap: 48px;
+    align-items: center;
+  }
+  .hero-margin {
+    writing-mode: vertical-rl;
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.5em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+    padding: 40px 0;
+    border-right: 1px solid var(--line);
+    display: flex;
+    align-items: center;
+    gap: 24px;
+  }
+  .hero-margin .num { color: var(--cinnabar); font-weight: 500; }
+
+  .hero-main { position: relative; }
+  .volume-line {
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 32px;
+    display: flex; align-items: center; gap: 16px;
+  }
+  .volume-line::before { content: ""; width: 40px; height: 1px; background: var(--gold); }
+
+  h1.hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(68px, 9vw, 140px);
+    font-weight: 300;
+    line-height: 0.92;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    margin-bottom: 32px;
+  }
+  h1.hero-title em { font-style: italic; font-weight: 400; color: var(--cinnabar); }
+
+  .hero-zh {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 18px;
+    color: var(--ink-soft);
+    letter-spacing: 0.35em;
+    margin-bottom: 48px;
+    font-weight: 300;
+  }
+
+  .hero-lede {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-style: italic;
+    line-height: 1.65;
+    color: var(--ink-soft);
+    max-width: 500px;
+    margin-bottom: 48px;
+    font-weight: 300;
+  }
+  .hero-lede::first-letter {
+    font-size: 64px;
+    float: left;
+    line-height: 0.85;
+    padding: 8px 12px 0 0;
+    color: var(--cinnabar);
+    font-weight: 400;
+    font-style: normal;
+  }
+
+  .cta-row { display: flex; gap: 32px; align-items: center; flex-wrap: wrap; }
+  .btn-primary {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px; letter-spacing: 0.25em; text-transform: uppercase;
+    padding: 16px 32px;
+    background: var(--ink);
+    color: var(--paper);
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.4s;
+    display: inline-flex; align-items: center; gap: 12px;
+  }
+  .btn-primary::after { content: "→"; transition: transform 0.3s; }
+  .btn-primary:hover { background: var(--cinnabar); }
+  .btn-primary:hover::after { transform: translateX(4px); }
+  .btn-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 16px;
+    font-style: italic;
+    color: var(--ink-soft);
+    text-decoration: none;
+    border-bottom: 1px solid var(--ink-soft);
+    padding-bottom: 3px;
+    transition: all 0.3s;
+  }
+  .btn-text:hover { color: var(--cinnabar); border-color: var(--cinnabar); }
+
+  .hero-right {
+    position: relative;
+    padding: 64px 48px;
+    border: 1px solid var(--line);
+    min-height: 520px;
+    display: flex; flex-direction: column; justify-content: space-between;
+    background: rgba(255,251,235,0.3);
+  }
+  .hero-right::before {
+    content: "";
+    position: absolute;
+    top: 12px; left: 12px; right: 12px; bottom: 12px;
+    border: 1px solid var(--line);
+    pointer-events: none;
+    opacity: 0.4;
+  }
+  .chapter-mark {
+    font-family: 'Playfair Display', serif;
+    font-size: 13px;
+    font-style: italic;
+    color: var(--ink-mute);
+    letter-spacing: 0.15em;
+    margin-bottom: 24px;
+  }
+  .chapter-char {
+    font-family: 'Noto Serif SC', serif;
+    font-weight: 300;
+    font-size: 160px;
+    line-height: 0.9;
+    color: var(--ink);
+    letter-spacing: 0.1em;
+    margin: 20px 0;
+  }
+  .chapter-char .red { color: var(--cinnabar); }
+  .chapter-footer {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 15px;
+    color: var(--ink-mute);
+    line-height: 1.6;
+    margin-top: 24px;
+  }
+  .chapter-footer .divider {
+    display: block;
+    width: 40px; height: 1px;
+    background: var(--line);
+    margin: 16px 0;
+  }
+
+  .seal {
+    position: absolute;
+    bottom: 40px; right: 40px;
+    width: 84px; height: 84px;
+    background: var(--cinnabar);
+    color: var(--paper);
+    font-family: 'Noto Serif SC', serif;
+    font-weight: 500;
+    font-size: 26px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center; justify-content: center;
+    text-align: center;
+    padding: 12px;
+    box-shadow:
+      0 0 0 2px var(--cinnabar) inset,
+      inset 0 0 0 4px var(--paper),
+      inset 0 0 0 5px var(--cinnabar),
+      4px 8px 16px rgba(184,32,28,0.2);
+    transform: rotate(-3deg);
+    line-height: 1;
+  }
+  .seal span { display: block; padding: 4px 0; }
+
+  .chapter-index {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    border-top: 1px solid var(--line);
+    margin-top: 100px;
+    padding-top: 32px;
+  }
+  .chapter-index-item { padding: 0 16px; }
+  .chapter-index-item:not(:last-child) { border-right: 1px solid var(--line); }
+  .chapter-index-num {
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .chapter-index-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    font-style: italic;
+    color: var(--ink);
+  }
+
+  /* ═══════════ SECTION HEADERS (shared) ═══════════ */
+  .sec-eyebrow {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px; letter-spacing: 0.4em; text-transform: uppercase;
+    color: var(--cinnabar);
+    margin-bottom: 24px;
+    display: flex; align-items: center; gap: 16px;
+  }
+  .sec-eyebrow::before {
+    content: ""; width: 40px; height: 1px; background: var(--cinnabar);
+  }
+  .sec-eyebrow.center { justify-content: center; }
+  .sec-eyebrow.center::before, .sec-eyebrow.center::after {
+    content: ""; width: 40px; height: 1px; background: var(--cinnabar); display: block;
+  }
+
+  .sec-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(56px, 7vw, 104px);
+    font-weight: 300;
+    line-height: 0.95;
+    letter-spacing: -0.02em;
+    margin-bottom: 24px;
+  }
+  .sec-title em { font-style: italic; color: var(--cinnabar); }
+  .sec-sub {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 18px;
+    letter-spacing: 0.3em;
+    color: var(--ink-soft);
+    opacity: 0.7;
+    margin-bottom: 80px;
+    line-height: 1.9;
+  }
+
+  /* ═══════════ ABOUT ═══════════ */
+  .about {
+    padding: 160px 0;
+    position: relative;
+    border-top: 1px solid var(--line);
+  }
+  .about::before {
+    content: "序";
+    position: absolute;
+    top: 60px; right: 80px;
+    font-family: 'Noto Serif SC', serif;
+    font-weight: 900;
+    font-size: 420px;
+    color: var(--ink);
+    opacity: 0.05;
+    line-height: 1;
+    pointer-events: none;
+  }
+  .about-inner { position: relative; z-index: 2; }
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 96px;
+    align-items: start;
+  }
+  .about-left { position: sticky; top: 120px; }
+  .about-left h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(48px, 6vw, 84px);
+    font-weight: 300;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    margin-bottom: 24px;
+  }
+  .about-left h2 em { font-style: italic; color: var(--cinnabar); }
+  .about-left .about-sub {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 15px;
+    letter-spacing: 0.25em;
+    color: var(--ink-mute);
+    line-height: 1.9;
+  }
+  .about-body {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    line-height: 1.75;
+    color: var(--ink-soft);
+    font-weight: 300;
+  }
+  .about-body p { margin-bottom: 32px; }
+  .about-body p.lead {
+    font-size: 26px;
+    font-style: italic;
+    color: var(--ink);
+    line-height: 1.5;
+  }
+  .about-body p.lead em {
+    font-style: normal;
+    color: var(--cinnabar);
+    font-weight: 400;
+  }
+  .about-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    margin-top: 64px;
+    border-top: 1px solid var(--line);
+    padding-top: 48px;
+  }
+  .about-stat { text-align: left; }
+  .about-stat:not(:last-child) { border-right: 1px solid var(--line); padding-right: 24px; }
+  .about-stat:not(:first-child) { padding-left: 24px; }
+  .about-stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 72px;
+    font-weight: 300;
+    font-style: italic;
+    color: var(--cinnabar);
+    line-height: 1;
+    margin-bottom: 12px;
+    letter-spacing: -0.02em;
+  }
+  .about-stat-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+  }
+
+  /* ═══════════ MEETING ═══════════ */
+  .meeting {
+    padding: 160px 0;
+    position: relative;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+  }
+  .meeting::before {
+    content: "會";
+    position: absolute;
+    top: 80px; right: 80px;
+    font-family: 'Noto Serif SC', serif;
+    font-weight: 900;
+    font-size: 420px;
+    color: var(--ink);
+    opacity: 0.05;
+    line-height: 1;
+    pointer-events: none;
+  }
+  .meeting-inner { position: relative; z-index: 2; }
+
+  .meeting-layout {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 80px;
+    align-items: start;
+    margin-bottom: 120px;
+  }
+  .meeting-left {
+    padding: 48px 56px;
+    background: var(--paper-2);
+    border: 1px solid var(--line);
+    position: relative;
+  }
+  .meeting-left::before {
+    content: "";
+    position: absolute;
+    top: -8px; left: -8px;
+    width: 24px; height: 24px;
+    border-top: 2px solid var(--cinnabar);
+    border-left: 2px solid var(--cinnabar);
+  }
+  .meeting-left::after {
+    content: "";
+    position: absolute;
+    bottom: -8px; right: -8px;
+    width: 24px; height: 24px;
+    border-bottom: 2px solid var(--cinnabar);
+    border-right: 2px solid var(--cinnabar);
+  }
+  .mdetail { margin-bottom: 40px; }
+  .mdetail:last-child { margin-bottom: 0; }
+  .mdetail-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 10px; letter-spacing: 0.4em; text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 8px;
+  }
+  .mdetail-value {
+    font-family: 'Playfair Display', serif;
+    font-size: 42px;
+    font-weight: 300;
+    line-height: 1;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+  }
+  .mdetail-value em { font-style: italic; color: var(--cinnabar); }
+  .mdetail-note {
+    font-family: 'Playfair Display', serif;
+    font-size: 15px;
+    font-style: italic;
+    color: var(--ink-mute);
+    margin-top: 8px;
+  }
+
+  .meeting-right h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 30px;
+    font-weight: 400;
+    font-style: italic;
+    line-height: 1.3;
+    margin-bottom: 32px;
+    color: var(--ink);
+  }
+  .demo-list { display: flex; flex-direction: column; }
+  .demo-row {
+    display: grid;
+    grid-template-columns: 48px 1fr;
+    gap: 24px;
+    padding: 28px 0;
+    border-bottom: 1px solid var(--line);
+    align-items: start;
+  }
+  .demo-row:last-child { border-bottom: none; }
+  .demo-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 36px;
+    font-style: italic;
+    color: var(--cinnabar);
+    line-height: 1;
+  }
+  .demo-content h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 400;
+    margin-bottom: 4px;
+  }
+  .demo-content .zh {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 13px;
+    color: var(--ink-mute);
+    letter-spacing: 0.2em;
+    margin-bottom: 10px;
+  }
+  .demo-content p {
+    font-family: 'Playfair Display', serif;
+    font-size: 15px;
+    font-style: italic;
+    color: var(--ink-soft);
+    line-height: 1.6;
+  }
+
+  /* Timeline */
+  .timeline-block { margin-top: 80px; padding-top: 80px; border-top: 1px solid var(--line); }
+  .timeline-block .sec-eyebrow { margin-bottom: 20px; }
+  .timeline-block h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 44px;
+    font-weight: 300;
+    font-style: italic;
+    margin-bottom: 48px;
+  }
+  .timeline-block h3 em { font-style: normal; color: var(--cinnabar); }
+  .timeline {
+    display: grid;
+    grid-template-columns: 1fr;
+    border-top: 1px solid var(--line);
+  }
+  .timeline-row {
+    display: grid;
+    grid-template-columns: 140px 1fr 2fr;
+    gap: 40px;
+    padding: 24px 0;
+    border-bottom: 1px solid var(--line);
+    align-items: baseline;
+    transition: padding 0.3s, background 0.3s;
+  }
+  .timeline-row:hover {
+    background: rgba(196,184,144,0.1);
+    padding-left: 16px;
+  }
+  .timeline-time {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-style: italic;
+    color: var(--cinnabar);
+    font-weight: 400;
+  }
+  .timeline-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--ink);
+  }
+  .timeline-desc {
+    font-family: 'Playfair Display', serif;
+    font-size: 15px;
+    font-style: italic;
+    color: var(--ink-soft);
+    line-height: 1.6;
+  }
+
+  /* ═══════════ PILLARS ═══════════ */
+  .pillars {
+    padding: 160px 0;
+    position: relative;
+  }
+  .pillars-masthead {
+    text-align: center;
+    margin-bottom: 120px;
+  }
+  .pillars-masthead h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(64px, 8vw, 120px);
+    font-weight: 300;
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+  .pillars-masthead h2 em { font-style: italic; color: var(--cinnabar); }
+  .pillars-masthead p {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-style: italic;
+    color: var(--ink-soft);
+    max-width: 640px;
+    margin: 32px auto 0;
+    line-height: 1.6;
+    font-weight: 300;
+  }
+
+  .pillars-spread {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 64px;
+  }
+  .pillar-card {
+    text-align: left;
+    position: relative;
+  }
+  .pillar-card::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: var(--ink);
+  }
+  .pillar-num-line {
+    display: flex; justify-content: space-between; align-items: baseline;
+    padding: 24px 0 40px;
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+  }
+  .pillar-num-line .big-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 88px;
+    font-style: italic;
+    font-weight: 300;
+    color: var(--cinnabar);
+    line-height: 0.8;
+    letter-spacing: -0.02em;
+  }
+  .pillar-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 44px;
+    font-weight: 400;
+    font-style: italic;
+    line-height: 1;
+    margin-bottom: 8px;
+    color: var(--ink);
+  }
+  .pillar-card .zh {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 14px;
+    letter-spacing: 0.25em;
+    color: var(--ink-mute);
+    margin-bottom: 32px;
+  }
+  .pillar-card p {
+    font-family: 'Playfair Display', serif;
+    font-size: 17px;
+    line-height: 1.7;
+    color: var(--ink-soft);
+    margin-bottom: 32px;
+    font-weight: 300;
+  }
+  .pillar-card p::first-letter {
+    font-size: 28px;
+    font-style: italic;
+    color: var(--cinnabar);
+  }
+  .pillar-tags {
+    display: flex; flex-wrap: wrap; gap: 16px;
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+  .pillar-tags span { position: relative; }
+  .pillar-tags span:not(:last-child)::after { content: "·"; margin-left: 16px; color: var(--line); }
+
+  /* ═══════════ FOUNDERS ═══════════ */
+  .founders {
+    padding: 160px 0;
+    border-top: 1px solid var(--line);
+    position: relative;
+  }
+  .founders::before {
+    content: "人";
+    position: absolute;
+    top: 100px; left: 60px;
+    font-family: 'Noto Serif SC', serif;
+    font-weight: 900;
+    font-size: 420px;
+    color: var(--cinnabar);
+    opacity: 0.04;
+    line-height: 1;
+    pointer-events: none;
+  }
+  .founders-header {
+    display: grid;
+    grid-template-columns: 1fr 1.3fr;
+    gap: 80px;
+    margin-bottom: 100px;
+    align-items: end;
+    position: relative;
+    z-index: 2;
+  }
+  .founders-header h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(56px, 7vw, 104px);
+    font-weight: 300;
+    line-height: 0.95;
+    letter-spacing: -0.02em;
+  }
+  .founders-header h2 em { font-style: italic; color: var(--cinnabar); }
+  .founders-header .intro {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-style: italic;
+    line-height: 1.65;
+    color: var(--ink-soft);
+    max-width: 540px;
+    font-weight: 300;
+    padding-bottom: 24px;
+  }
+
+  .founders-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: var(--line);
+    border: 1px solid var(--line);
+    position: relative;
+    z-index: 2;
+  }
+  .founder-card {
+    background: var(--paper);
+    padding: 48px 36px;
+    position: relative;
+    transition: all 0.5s;
+    min-height: 420px;
+    display: flex; flex-direction: column; justify-content: space-between;
+  }
+  .founder-card:hover {
+    background: var(--paper-2);
+  }
+  .founder-initial {
+    font-family: 'Playfair Display', serif;
+    font-size: 88px;
+    font-weight: 300;
+    font-style: italic;
+    color: var(--cinnabar);
+    line-height: 1;
+    opacity: 0.25;
+    margin-bottom: 28px;
+    transition: opacity 0.5s;
+    letter-spacing: -0.03em;
+  }
+  .founder-card:hover .founder-initial { opacity: 0.7; }
+  .founder-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 500;
+    line-height: 1.2;
+    color: var(--ink);
+    margin-bottom: 4px;
+  }
+  .founder-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 14px;
+    font-style: italic;
+    color: var(--ink-mute);
+    margin-bottom: 20px;
+  }
+  .founder-bio {
+    font-family: 'Playfair Display', serif;
+    font-size: 14px;
+    font-style: italic;
+    line-height: 1.6;
+    color: var(--ink-soft);
+    margin-bottom: 20px;
+    opacity: 0.85;
+    position: relative;
+    padding-left: 14px;
+  }
+  .founder-bio::before {
+    content: """;
+    position: absolute;
+    left: 0; top: -4px;
+    font-size: 28px;
+    color: var(--cinnabar);
+    font-style: normal;
+    line-height: 1;
+    opacity: 0.5;
+  }
+  .founder-role {
+    font-family: 'Inter', sans-serif;
+    font-size: 9px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--cinnabar);
+    padding-top: 16px;
+    border-top: 1px solid var(--line);
+  }
+
+  /* ═══════════ WHAT WE DO ═══════════ */
+  .whatwedo {
+    padding: 160px 0;
+    border-top: 1px solid var(--line);
+    background: linear-gradient(to bottom, transparent, rgba(196,184,144,0.06));
+    position: relative;
+  }
+  .whatwedo::before {
+    content: "行";
+    position: absolute;
+    top: 100px; right: 60px;
+    font-family: 'Noto Serif SC', serif;
+    font-weight: 900;
+    font-size: 420px;
+    color: var(--ink);
+    opacity: 0.05;
+    line-height: 1;
+    pointer-events: none;
+  }
+  .whatwedo-inner { position: relative; z-index: 2; }
+  .activities-list {
+    display: flex; flex-direction: column;
+    border-top: 1px solid var(--ink);
+  }
+  .activity-row {
+    display: grid;
+    grid-template-columns: 80px 1.2fr 2fr 120px;
+    gap: 48px;
+    padding: 48px 0;
+    border-bottom: 1px solid var(--line);
+    align-items: start;
+    transition: all 0.4s;
+  }
+  .activity-row:hover { padding-left: 24px; background: rgba(196,184,144,0.08); }
+  .activity-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 48px;
+    font-style: italic;
+    font-weight: 300;
+    color: var(--cinnabar);
+    line-height: 1;
+  }
+  .activity-title h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 36px;
+    font-weight: 400;
+    line-height: 1.1;
+    margin-bottom: 6px;
+  }
+  .activity-title h3 em { font-style: italic; color: var(--cinnabar); }
+  .activity-title .zh {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 14px;
+    color: var(--ink-mute);
+    letter-spacing: 0.25em;
+  }
+  .activity-desc {
+    font-family: 'Playfair Display', serif;
+    font-size: 17px;
+    line-height: 1.7;
+    color: var(--ink-soft);
+    font-weight: 300;
+    padding-top: 6px;
+  }
+  .activity-cadence {
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    text-align: right;
+    padding-top: 12px;
+    line-height: 1.9;
+  }
+  .activity-cadence strong {
+    display: block;
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 18px;
+    color: var(--cinnabar);
+    text-transform: none;
+    letter-spacing: 0;
+    font-weight: 400;
+    margin-bottom: 4px;
+  }
+
+  /* ═══════════ JOIN US ═══════════ */
+  .join {
+    padding: 180px 0;
+    border-top: 1px solid var(--line);
+    text-align: center;
+    position: relative;
+  }
+  .join::before {
+    content: "入";
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Noto Serif SC', serif;
+    font-weight: 900;
+    font-size: 520px;
+    color: var(--cinnabar);
+    opacity: 0.05;
+    line-height: 1;
+    pointer-events: none;
+  }
+  .join-inner { position: relative; z-index: 2; max-width: 820px; margin: 0 auto; }
+  .join h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(72px, 9vw, 144px);
+    font-weight: 300;
+    line-height: 0.9;
+    letter-spacing: -0.02em;
+    margin-bottom: 32px;
+  }
+  .join h2 em { font-style: italic; color: var(--cinnabar); }
+  .join-sub {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 16px;
+    letter-spacing: 0.35em;
+    color: var(--ink-soft);
+    margin-bottom: 56px;
+    line-height: 1.9;
+  }
+  .join-lede {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-style: italic;
+    line-height: 1.65;
+    color: var(--ink-soft);
+    max-width: 640px;
+    margin: 0 auto 64px;
+    font-weight: 300;
+  }
+  .join-steps {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 48px;
+    margin-bottom: 64px;
+    text-align: left;
+  }
+  .join-step { position: relative; padding-top: 32px; border-top: 2px solid var(--cinnabar); }
+  .join-step-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 14px;
+    font-style: italic;
+    color: var(--cinnabar);
+    margin-bottom: 12px;
+    letter-spacing: 0.1em;
+  }
+  .join-step h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 26px;
+    font-weight: 400;
+    margin-bottom: 12px;
+  }
+  .join-step p {
+    font-family: 'Playfair Display', serif;
+    font-size: 15px;
+    font-style: italic;
+    color: var(--ink-soft);
+    line-height: 1.65;
+  }
+  .join-cta {
+    display: flex; gap: 24px; justify-content: center; margin-top: 16px; flex-wrap: wrap;
+  }
+
+  /* ═══════════ RESOURCES ═══════════ */
+  .resources {
+    padding: 140px 0;
+    border-top: 1px solid var(--line);
+    background: rgba(228,215,181,0.25);
+  }
+  .resources-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: start;
+  }
+  .resources-left h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(48px, 6vw, 84px);
+    font-weight: 300;
+    line-height: 0.95;
+    letter-spacing: -0.02em;
+    margin-bottom: 24px;
+  }
+  .resources-left h2 em { font-style: italic; color: var(--cinnabar); }
+  .resources-left .desc {
+    font-family: 'Playfair Display', serif;
+    font-size: 19px;
+    font-style: italic;
+    line-height: 1.65;
+    color: var(--ink-soft);
+    max-width: 460px;
+    font-weight: 300;
+  }
+  .resource-list {
+    display: flex; flex-direction: column;
+    border-top: 1px solid var(--ink);
+  }
+  .resource-item {
+    display: grid;
+    grid-template-columns: 60px 1fr auto;
+    gap: 24px;
+    padding: 28px 0;
+    border-bottom: 1px solid var(--line);
+    align-items: baseline;
+    text-decoration: none;
+    transition: all 0.4s;
+  }
+  .resource-item:hover { padding-left: 16px; background: rgba(255,251,235,0.5); }
+  .resource-item .roman {
+    font-family: 'Playfair Display', serif;
+    font-size: 24px;
+    font-style: italic;
+    color: var(--cinnabar);
+  }
+  .resource-item h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 500;
+    color: var(--ink);
+    margin-bottom: 4px;
+  }
+  .resource-item .zh {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 12px;
+    letter-spacing: 0.2em;
+    color: var(--ink-mute);
+  }
+  .resource-item .arrow {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 24px;
+    color: var(--ink-soft);
+    transition: transform 0.3s, color 0.3s;
+  }
+  .resource-item:hover .arrow { color: var(--cinnabar); transform: translateX(8px); }
+
+  /* ═══════════ FOOTER ═══════════ */
+  footer {
+    padding: 120px 0 48px;
+    border-top: 1px solid var(--line);
+    background: linear-gradient(to bottom, transparent, rgba(196,184,144,0.1));
+  }
+  .footer-masthead {
+    text-align: center;
+    padding-bottom: 64px;
+    border-bottom: 1px solid var(--line);
+    margin-bottom: 48px;
+  }
+  .footer-masthead-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(64px, 8vw, 108px);
+    font-weight: 300;
+    line-height: 1;
+  }
+  .footer-masthead-title em { font-style: italic; color: var(--cinnabar); }
+  .footer-masthead-sub {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 14px;
+    letter-spacing: 0.4em;
+    color: var(--ink-mute);
+    margin-top: 16px;
+    line-height: 1.9;
+  }
+  .footer-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 48px;
+    margin-bottom: 48px;
+  }
+  .footer-col h4 {
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--cinnabar);
+    margin-bottom: 20px;
+    font-weight: 500;
+  }
+  .footer-col a {
+    display: block;
+    font-family: 'Playfair Display', serif;
+    font-size: 16px;
+    font-style: italic;
+    color: var(--ink-soft);
+    text-decoration: none;
+    margin-bottom: 10px;
+    transition: color 0.3s;
+  }
+  .footer-col a:hover { color: var(--cinnabar); }
+  .footer-bottom {
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+    text-align: center;
+    padding-top: 24px;
+    border-top: 1px solid var(--line);
+    display: flex; justify-content: space-between;
+  }
+
+  /* ═══════════ RESPONSIVE ═══════════ */
+  @media (max-width: 1100px) {
+    .founders-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 900px) {
+    .container { padding: 0 24px; }
+    nav { padding: 18px 24px; }
+    nav.scrolled { padding: 14px 24px; }
+    .nav-links { display: none; }
+    .hero-layout { grid-template-columns: 1fr; }
+    .hero-margin { display: none; }
+    .hero-right { display: none; }
+    .about-grid { grid-template-columns: 1fr; gap: 48px; }
+    .about-left { position: static; }
+    .meeting-layout { grid-template-columns: 1fr; gap: 48px; }
+    .pillars-spread { grid-template-columns: 1fr; gap: 64px; }
+    .founders-header { grid-template-columns: 1fr; gap: 32px; }
+    .founders-grid { grid-template-columns: 1fr; }
+    .activity-row { grid-template-columns: 1fr; gap: 16px; padding: 36px 0; }
+    .activity-cadence { text-align: left; }
+    .join-steps { grid-template-columns: 1fr; gap: 32px; }
+    .resources-grid { grid-template-columns: 1fr; gap: 48px; }
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+    .chapter-index { grid-template-columns: 1fr 1fr; }
+    .timeline-row { grid-template-columns: 1fr; gap: 8px; }
+    .footer-bottom { flex-direction: column; gap: 12px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════ NAV ═══════════ -->
+<nav id="nav">
+  <a href="#top" class="logo">H<em>&</em>I Laboratory</a>
+  <div class="nav-links">
+    <a href="#about">About</a>
+    <a href="#meeting">Meeting</a>
+    <a href="#pillars">Pillars</a>
+    <a href="#founders">Founders</a>
+    <a href="#whatwedo">Programs</a>
+    <a href="#join">Join</a>
+  </div>
+</nav>
+
+<!-- ═══════════ HERO ═══════════ -->
+<section class="hero" id="top">
+  <div class="container">
+    <div class="hero-layout">
+      <div class="hero-margin">
+        <span class="num">N° 001</span>
+        <span>Spring MMXXVI</span>
+        <span>Diablo Valley</span>
+      </div>
+
+      <div class="hero-main">
+        <div class="volume-line">Volume I · The Founding Issue</div>
+        <h1 class="hero-title">
+          Heritage<br>
+          <em>&</em> Intelligence
+        </h1>
+        <div class="hero-zh">传承 · 智能 · 并肩而行</div>
+        <p class="hero-lede">
+          A student-founded laboratory at Diablo Valley College, where
+          thirteen centuries of cultural memory learn to converse with
+          the machines of our own century.
+        </p>
+        <div class="cta-row">
+          <a href="#meeting" class="btn-primary">Our First Meeting</a>
+          <a href="#pillars" class="btn-text">Read the Philosophy</a>
+        </div>
+      </div>
+
+      <div class="hero-right">
+        <div class="chapter-mark">— Chapter One —</div>
+        <div class="chapter-char">
+          傳<br>
+          <span class="red">承</span>
+        </div>
+        <div class="chapter-footer">
+          <em>"To carry forward is not to preserve,</em>
+          <span class="divider"></span>
+          <em>but to let the past draw breath again."</em>
+        </div>
+        <div class="seal">
+          <span>文</span><span>韻</span>
+          <span>智</span><span>行</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="chapter-index">
+      <div class="chapter-index-item">
+        <div class="chapter-index-num">I.</div>
+        <div class="chapter-index-title">Philosophy</div>
+      </div>
+      <div class="chapter-index-item">
+        <div class="chapter-index-num">II.</div>
+        <div class="chapter-index-title">First Meeting</div>
+      </div>
+      <div class="chapter-index-item">
+        <div class="chapter-index-num">III.</div>
+        <div class="chapter-index-title">The Founders</div>
+      </div>
+      <div class="chapter-index-item">
+        <div class="chapter-index-num">IV.</div>
+        <div class="chapter-index-title">Join the Lab</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ ABOUT ═══════════ -->
+<section class="about" id="about">
+  <div class="container">
+    <div class="about-inner">
+      <div class="about-grid">
+        <div class="about-left">
+          <div class="sec-eyebrow">Preface · 序言</div>
+          <h2>Who we <em>are.</em></h2>
+          <div class="about-sub">我们是谁</div>
+        </div>
+        <div class="about-body">
+          <p class="lead">
+            In the age of artificial intelligence, traditional culture should
+            no longer be <em>preserved as a static archive</em> — it should be
+            made breathable, evolvable, and sustainable.
+          </p>
+          <p>
+            H&I Lab — the Heritage & Intelligence Laboratory — is the first
+            student-founded laboratory at Diablo Valley College dedicated to
+            the intersection of traditional Chinese culture and artificial
+            intelligence. We are engineers and humanists, poets and product
+            managers, builders who believe the distance between a Tang Dynasty
+            verse and a modern language model is not as wide as it seems.
+          </p>
+          <p>
+            We do not study heritage as a museum piece. We let it <em>speak
+            again</em>. Every retrieval pipeline, every fine-tuned model,
+            every campus market we build is an attempt to answer a single
+            question: what does tradition sound like when it learns the
+            language of its own century?
+          </p>
+          <div class="about-stats">
+            <div class="about-stat">
+              <div class="about-stat-num">08</div>
+              <div class="about-stat-label">Founding Officers</div>
+            </div>
+            <div class="about-stat">
+              <div class="about-stat-num">03</div>
+              <div class="about-stat-label">Core Pillars</div>
+            </div>
+            <div class="about-stat">
+              <div class="about-stat-num">∞</div>
+              <div class="about-stat-label">Stories to Retell</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ MEETING ═══════════ -->
+<section class="meeting" id="meeting">
+  <div class="container">
+    <div class="meeting-inner">
+      <div class="sec-eyebrow">Chapter I · The Inaugural Gathering</div>
+      <h2 class="sec-title">Our very <em>first</em> meeting.</h2>
+      <div class="sec-sub">第一次大会 · 见证一个想法成为运动的瞬间</div>
+
+      <div class="meeting-layout">
+        <div class="meeting-left">
+          <div class="mdetail">
+            <div class="mdetail-label">Date</div>
+            <div class="mdetail-value">April <em>14</em></div>
+            <div class="mdetail-note">Tuesday, MMXXVI</div>
+          </div>
+          <div class="mdetail">
+            <div class="mdetail-label">Hour</div>
+            <div class="mdetail-value"><em>3</em>–<em>5</em> PM</div>
+            <div class="mdetail-note">Doors open at 2:45</div>
+          </div>
+          <div class="mdetail">
+            <div class="mdetail-label">Place</div>
+            <div class="mdetail-value">The <em>Cafeteria</em></div>
+            <div class="mdetail-note">Diablo Valley College · Main Hall</div>
+          </div>
+          <div class="mdetail">
+            <div class="mdetail-label">Admission</div>
+            <div class="mdetail-value"><em>Free</em></div>
+            <div class="mdetail-note">Boba, food & demos · all welcome</div>
+          </div>
+        </div>
+
+        <div class="meeting-right">
+          <h3>
+            Three live demonstrations — a single afternoon where heritage
+            learns to speak again.
+          </h3>
+          <div class="demo-list">
+            <div class="demo-row">
+              <div class="demo-num">i</div>
+              <div class="demo-content">
+                <h4>Talk to a Chinese Poet</h4>
+                <div class="zh">穿越对话</div>
+                <p>
+                  An AI agent trained on 1,400 Tang Dynasty poems using RAG.
+                  Ask anything — Du Fu answers in his own literary voice,
+                  citing his own work.
+                </p>
+              </div>
+            </div>
+            <div class="demo-row">
+              <div class="demo-num">ii</div>
+              <div class="demo-content">
+                <h4>Your Chinese Name</h4>
+                <div class="zh">以你之名</div>
+                <p>
+                  Share your English name and a little about who you are.
+                  Receive a personalized Chinese name with oracle bone
+                  etymology and poetic resonance — take it home as an
+                  ink-wash archive.
+                </p>
+              </div>
+            </div>
+            <div class="demo-row">
+              <div class="demo-num">iii</div>
+              <div class="demo-content">
+                <h4>Poetic Fortune</h4>
+                <div class="zh">AI 算命</div>
+                <p>
+                  The 3,000-year-old I Ching meets the large language model.
+                  Draw a hexagram and receive a poetic fortune — literary,
+                  cultural, and written just for you.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline-block">
+        <div class="sec-eyebrow">Afternoon Programme</div>
+        <h3>The <em>flow</em> of the day.</h3>
+        <div class="timeline">
+          <div class="timeline-row">
+            <div class="timeline-time">3:00</div>
+            <div class="timeline-title">Check-in & Social</div>
+            <div class="timeline-desc">Doors open. Grab boba, food, and find a seat.</div>
+          </div>
+          <div class="timeline-row">
+            <div class="timeline-time">3:20</div>
+            <div class="timeline-title">Official Welcome</div>
+            <div class="timeline-desc">Henry and Emma open the evening. Why we built this laboratory.</div>
+          </div>
+          <div class="timeline-row">
+            <div class="timeline-time">3:40</div>
+            <div class="timeline-title">Live AI Demos</div>
+            <div class="timeline-desc">Three demos, back to back. Audience participation encouraged.</div>
+          </div>
+          <div class="timeline-row">
+            <div class="timeline-time">4:30</div>
+            <div class="timeline-title">Open Mic & Q&A</div>
+            <div class="timeline-desc">Ask anything. Pitch your own ideas. Meet the founding cohort.</div>
+          </div>
+          <div class="timeline-row">
+            <div class="timeline-time">4:50</div>
+            <div class="timeline-title">Sign-ups & Farewell</div>
+            <div class="timeline-desc">Join the lab before you leave. This is only the beginning.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ PILLARS ═══════════ -->
+<section class="pillars" id="pillars">
+  <div class="container">
+    <div class="pillars-masthead">
+      <div class="sec-eyebrow center">Chapter II · The Three Directives</div>
+      <h2>Three <em>Pillars</em></h2>
+      <p>
+        Our work stands on a triad of principles — each essential,
+        none complete without the others. Together they form the
+        architecture of a new cultural practice.
+      </p>
+    </div>
+
+    <div class="pillars-spread">
+      <div class="pillar-card">
+        <div class="pillar-num-line">
+          <span>Directive One</span>
+          <span class="big-num">I</span>
+        </div>
+        <h3>Heritage</h3>
+        <div class="zh">文化守望 · HERITAGE GUARDIAN</div>
+        <p>
+          Digitally preserving the traditions that resist preservation —
+          oral histories, ancient manuscripts, intangible heritage — before
+          the silence becomes permanent.
+        </p>
+        <div class="pillar-tags">
+          <span>Archive</span><span>Oral History</span><span>Manuscript</span>
+        </div>
+      </div>
+
+      <div class="pillar-card">
+        <div class="pillar-num-line">
+          <span>Directive Two</span>
+          <span class="big-num">II</span>
+        </div>
+        <h3>Intelligence</h3>
+        <div class="zh">人工智能 · AI PLAYGROUND</div>
+        <p>
+          Building culture-themed AI systems — retrieval pipelines,
+          historical agents, fine-tuned models — letting students converse
+          across a thousand years of silence.
+        </p>
+        <div class="pillar-tags">
+          <span>RAG</span><span>LLM</span><span>Agent Design</span>
+        </div>
+      </div>
+
+      <div class="pillar-card">
+        <div class="pillar-num-line">
+          <span>Directive Three</span>
+          <span class="big-num">III</span>
+        </div>
+        <h3>Enterprise</h3>
+        <div class="zh">商业孵化 · CULTURAL INCUBATOR</div>
+        <p>
+          Transforming cultural craft into sustainable practice. Campus
+          markets, AI-designed merchandise, the economics of tradition —
+          heritage must pay its own way to endure.
+        </p>
+        <div class="pillar-tags">
+          <span>Market</span><span>Product</span><span>Economics</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ FOUNDERS ═══════════ -->
+<section class="founders" id="founders">
+  <div class="container">
+    <div class="founders-header">
+      <h2>The Founding <em>Cohort.</em></h2>
+      <p class="intro">
+        Eight officers. Eight disciplines. One shared conviction that
+        culture and computation belong in the same sentence. Each carries
+        both an administrative post and a functional craft — the system
+        by which a small team builds something larger than itself.
+      </p>
+    </div>
+
+    <div class="founders-grid">
+      <div class="founder-card">
+        <div>
+          <div class="founder-initial">H</div>
+          <div class="founder-name">Henry Tao</div>
+          <div class="founder-title">President</div>
+          <div class="founder-bio">Believes the distance between a Tang verse and a language model is smaller than we think.</div>
+        </div>
+        <div class="founder-role">AI Project Director · 智修课</div>
+      </div>
+
+      <div class="founder-card">
+        <div>
+          <div class="founder-initial">E</div>
+          <div class="founder-name">Emma Chen</div>
+          <div class="founder-title">Vice President</div>
+          <div class="founder-bio">Every gathering is a small argument against forgetting — she plans the ones that matter.</div>
+        </div>
+        <div class="founder-role">Events Director</div>
+      </div>
+
+      <div class="founder-card">
+        <div>
+          <div class="founder-initial">N</div>
+          <div class="founder-name">Nemo Huang</div>
+          <div class="founder-title">External Representative</div>
+          <div class="founder-bio">Translates old stories into new scrolls — one post, one frame at a time.</div>
+        </div>
+        <div class="founder-role">Social Media Officer</div>
+      </div>
+
+      <div class="founder-card">
+        <div>
+          <div class="founder-initial">J</div>
+          <div class="founder-name">Junang Zhao</div>
+          <div class="founder-title">Finance Director</div>
+          <div class="founder-bio">Heritage is only sustainable when it learns to pay its own rent.</div>
+        </div>
+        <div class="founder-role">Business Officer</div>
+      </div>
+
+      <div class="founder-card">
+        <div>
+          <div class="founder-initial">W</div>
+          <div class="founder-name">William Qiu</div>
+          <div class="founder-title">Secretary-General</div>
+          <div class="founder-bio">Classical Chinese is not a dead language — only a patient one.</div>
+        </div>
+        <div class="founder-role">Culture Officer · 文修课</div>
+      </div>
+
+      <div class="founder-card">
+        <div>
+          <div class="founder-initial">L</div>
+          <div class="founder-name">Livia Yang</div>
+          <div class="founder-title">Chief Advisor</div>
+          <div class="founder-bio">Keeps the lab honest by asking the questions no one else wants to hear.</div>
+        </div>
+        <div class="founder-role">Brand Strategy Advisor</div>
+      </div>
+
+      <div class="founder-card">
+        <div>
+          <div class="founder-initial">Y</div>
+          <div class="founder-name">Yifan Wang</div>
+          <div class="founder-title">Product Manager</div>
+          <div class="founder-bio">Designs experiences that treat curiosity as the only prerequisite.</div>
+        </div>
+        <div class="founder-role">Product & Experience</div>
+      </div>
+
+      <div class="founder-card">
+        <div>
+          <div class="founder-initial">C</div>
+          <div class="founder-name">Cayden Ching</div>
+          <div class="founder-title">Product Manager</div>
+          <div class="founder-bio">Ships small things that carry large ideas — and always tests the demo twice.</div>
+        </div>
+        <div class="founder-role">Product & Engineering</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ WHAT WE DO ═══════════ -->
+<section class="whatwedo" id="whatwedo">
+  <div class="container">
+    <div class="whatwedo-inner">
+      <div class="sec-eyebrow">Chapter III · The Work</div>
+      <h2 class="sec-title">What we <em>do.</em></h2>
+      <div class="sec-sub">博古通今 · 五项核心活动</div>
+
+      <div class="activities-list">
+        <div class="activity-row">
+          <div class="activity-num">i</div>
+          <div class="activity-title">
+            <h3><em>Festive</em> Lab</h3>
+            <div class="zh">智趣节庆</div>
+          </div>
+          <div class="activity-desc">
+            Traditional festivals reimagined as AI playgrounds. Qingming,
+            Dragon Boat, Mid-Autumn — each becomes a stage for interactive
+            cultural experiments. Drop in, play, take home a story.
+          </div>
+          <div class="activity-cadence">
+            <strong>Seasonal</strong>
+            Per Festival
+          </div>
+        </div>
+
+        <div class="activity-row">
+          <div class="activity-num">ii</div>
+          <div class="activity-title">
+            <h3><em>Culture</em> Market</h3>
+            <div class="zh">智市营生</div>
+          </div>
+          <div class="activity-desc">
+            Campus pop-up markets with 5 to 10 booths. AI-designed
+            merchandise, traditional food, live demos. Where members learn
+            pricing, consumer behavior, and the economics of cultural
+            craft.
+          </div>
+          <div class="activity-cadence">
+            <strong>Twice a Semester</strong>
+            Spring & Fall
+          </div>
+        </div>
+
+        <div class="activity-row">
+          <div class="activity-num">iii</div>
+          <div class="activity-title">
+            <h3><em>文修课</em></h3>
+            <div class="zh">Culture Deep-Dive</div>
+          </div>
+          <div class="activity-desc">
+            Monthly lectures on traditional Chinese culture — Song aesthetics,
+            calligraphy, ancient commerce, the poetics of classical language.
+            Led by Secretary-General William Qiu.
+          </div>
+          <div class="activity-cadence">
+            <strong>Monthly</strong>
+            1× per Month
+          </div>
+        </div>
+
+        <div class="activity-row">
+          <div class="activity-num">iv</div>
+          <div class="activity-title">
+            <h3><em>智修课</em></h3>
+            <div class="zh">AI Tools Workshop</div>
+          </div>
+          <div class="activity-desc">
+            Hands-on technical workshops for all majors — RAG, prompt
+            engineering, fine-tuning, vector databases. No computer science
+            background required. Led by President Henry Tao.
+          </div>
+          <div class="activity-cadence">
+            <strong>Monthly</strong>
+            1× per Month
+          </div>
+        </div>
+
+        <div class="activity-row">
+          <div class="activity-num">v</div>
+          <div class="activity-title">
+            <h3><em>Social</em> Hangouts</h3>
+            <div class="zh">日常交流</div>
+          </div>
+          <div class="activity-desc">
+            Low-key gatherings for boba, conversation, and connection.
+            Because the best ideas rarely come from scheduled meetings —
+            they come from the people you meet around a table.
+          </div>
+          <div class="activity-cadence">
+            <strong>Weekly</strong>
+            As Announced
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ JOIN ═══════════ -->
+<section class="join" id="join">
+  <div class="container">
+    <div class="join-inner">
+      <div class="sec-eyebrow center">Chapter IV · An Open Invitation</div>
+      <h2>Join the <em>Lab.</em></h2>
+      <div class="join-sub">加入我们 · 不问出身 · 只问初心</div>
+      <p class="join-lede">
+        We need engineers and literature majors, designers and data
+        scientists, content creators and curious minds. Whether you study
+        computer science, Chinese literature, business, or something we
+        haven't heard of yet — there is a place for you here.
+      </p>
+
+      <div class="join-steps">
+        <div class="join-step">
+          <div class="join-step-num">Step I</div>
+          <h4>Come to a meeting.</h4>
+          <p>
+            Start with the first gathering on April 14. See the demos,
+            meet the team, decide for yourself.
+          </p>
+        </div>
+        <div class="join-step">
+          <div class="join-step-num">Step II</div>
+          <h4>Sign the book.</h4>
+          <p>
+            Fill out the sign-up sheet at the event — or reach out to us
+            on Instagram. Tell us what you want to build.
+          </p>
+        </div>
+        <div class="join-step">
+          <div class="join-step-num">Step III</div>
+          <h4>Start building.</h4>
+          <p>
+            Pick a project, join a working group, pitch your own idea.
+            Every member contributes something real.
+          </p>
+        </div>
+      </div>
+
+      <div class="join-cta">
+        <a href="#meeting" class="btn-primary">See You On April 14</a>
+        <a href="https://instagram.com/hi_dvc" target="_blank" rel="noopener" class="btn-text">@hi_dvc on Instagram</a>
+        <a href="https://discord.gg/6C4Dyz82" target="_blank" rel="noopener" class="btn-text">Join our Discord</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ RESOURCES ═══════════ -->
+<section class="resources" id="resources">
+  <div class="container">
+    <div class="resources-grid">
+      <div class="resources-left">
+        <div class="sec-eyebrow">Appendix · 附录</div>
+        <h2>Open <em>Resources.</em></h2>
+        <p class="desc">
+          The documents, datasets, and readings that shape how we work.
+          Free to browse, free to share. Heritage belongs to everyone.
+        </p>
+      </div>
+      <div class="resource-list">
+        <a href="#" class="resource-item">
+          <div class="roman">i</div>
+          <div>
+            <h4>Club Charter</h4>
+            <div class="zh">俱乐部章程</div>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href="#" class="resource-item">
+          <div class="roman">ii</div>
+          <div>
+            <h4>Event Calendar</h4>
+            <div class="zh">活动日历</div>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href="#" class="resource-item">
+          <div class="roman">iii</div>
+          <div>
+            <h4>Open AI Curriculum</h4>
+            <div class="zh">开源 AI 课程</div>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href="#" class="resource-item">
+          <div class="roman">iv</div>
+          <div>
+            <h4>Reading List</h4>
+            <div class="zh">推荐阅读</div>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href="#" class="resource-item">
+          <div class="roman">v</div>
+          <div>
+            <h4>Project Repository</h4>
+            <div class="zh">项目仓库</div>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ FOOTER ═══════════ -->
+<footer>
+  <div class="container">
+    <div class="footer-masthead">
+      <div class="footer-masthead-title">H<em>&</em>I Laboratory</div>
+      <div class="footer-masthead-sub">传 承 · 智 能 · 并 肩 而 行</div>
+    </div>
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h4>Explore</h4>
+        <a href="#about">About</a>
+        <a href="#pillars">Philosophy</a>
+        <a href="#whatwedo">Programs</a>
+        <a href="#founders">The Cohort</a>
+      </div>
+      <div class="footer-col">
+        <h4>Events</h4>
+        <a href="#meeting">First Meeting</a>
+        <a href="#">Festive Lab</a>
+        <a href="#">Culture Market</a>
+      </div>
+      <div class="footer-col">
+        <h4>Connect</h4>
+        <a href="https://instagram.com/hi_dvc" target="_blank" rel="noopener">Instagram · @hi_dvc</a>
+        <a href="https://discord.gg/6C4Dyz82" target="_blank" rel="noopener">Discord Server</a>
+        <a href="mailto:hilabdvc@gmail.com">hilabdvc@gmail.com</a>
+      </div>
+      <div class="footer-col">
+        <h4>Institution</h4>
+        <a href="#">Diablo Valley College</a>
+        <a href="#">Spring MMXXVI</a>
+        <a href="#resources">Charter & Resources</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div>© MMXXVI H&I Laboratory · All Rights Reserved</div>
+      <div>Heritage Meets Intelligence · Built at DVC</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Nav scroll effect
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 60) { nav.classList.add('scrolled'); }
+    else { nav.classList.remove('scrolled'); }
+  });
+</script>
+
+</body>
+</html>

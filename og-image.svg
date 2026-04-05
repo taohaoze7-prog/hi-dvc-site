@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630">
+  <!-- Background: paper cream -->
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="30%" r="80%">
+      <stop offset="0%" stop-color="#f8f1dc"/>
+      <stop offset="100%" stop-color="#e4d7b5"/>
+    </radialGradient>
+    <filter id="noise">
+      <feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="2"/>
+      <feColorMatrix values="0 0 0 0 0.1  0 0 0 0 0.1  0 0 0 0 0.1  0 0 0 0.08 0"/>
+      <feComposite in2="SourceGraphic" operator="in"/>
+    </filter>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect width="1200" height="630" fill="#1a2332" opacity="0" filter="url(#noise)"/>
+
+  <!-- Frame border -->
+  <rect x="48" y="48" width="1104" height="534" fill="none" stroke="#c4b890" stroke-width="1.5"/>
+  <rect x="60" y="60" width="1080" height="510" fill="none" stroke="#c4b890" stroke-width="0.8" opacity="0.6"/>
+
+  <!-- Giant watermark character 傳 -->
+  <text x="1050" y="540" font-family="'Noto Serif SC', 'SimSun', serif" font-size="680" font-weight="900" fill="#1a2332" opacity="0.04" text-anchor="end">傳</text>
+
+  <!-- Top volume line -->
+  <line x1="120" y1="145" x2="200" y2="145" stroke="#8a6a3a" stroke-width="1.5"/>
+  <text x="220" y="152" font-family="'Inter', sans-serif" font-size="18" letter-spacing="5" fill="#8a6a3a" font-weight="500">VOLUME I · THE FOUNDING ISSUE</text>
+
+  <!-- Main title -->
+  <text x="120" y="280" font-family="'Playfair Display', Georgia, serif" font-size="132" font-weight="300" fill="#1a2332" letter-spacing="-2">Heritage</text>
+  <text x="120" y="410" font-family="'Playfair Display', Georgia, serif" font-size="132" font-weight="300" fill="#1a2332">
+    <tspan font-style="italic" fill="#b8201c">&amp;</tspan>
+    <tspan fill="#1a2332"> Intelligence</tspan>
+  </text>
+
+  <!-- Chinese subtitle -->
+  <text x="120" y="470" font-family="'Noto Serif SC', 'SimSun', serif" font-size="26" fill="#3a4658" letter-spacing="8" font-weight="300">传 承  ·  智 能  ·  并 肩 而 行</text>
+
+  <!-- Bottom tagline -->
+  <line x1="120" y1="520" x2="180" y2="520" stroke="#b8201c" stroke-width="2"/>
+  <text x="120" y="555" font-family="'Playfair Display', Georgia, serif" font-size="22" font-style="italic" fill="#3a4658">Diablo Valley College  ·  Spring MMXXVI</text>
+
+  <!-- Cinnabar seal in bottom-right -->
+  <g transform="translate(1010, 440) rotate(-3)">
+    <rect x="0" y="0" width="110" height="110" fill="#b8201c"/>
+    <rect x="6" y="6" width="98" height="98" fill="none" stroke="#f4ecd8" stroke-width="2"/>
+    <rect x="9" y="9" width="92" height="92" fill="#b8201c" stroke="#f4ecd8" stroke-width="0.8"/>
+    <g fill="#f4ecd8" font-family="'Noto Serif SC', 'SimSun', serif" font-size="32" font-weight="700" text-anchor="middle" dominant-baseline="central">
+      <text x="33" y="36">文</text>
+      <text x="77" y="36">韻</text>
+      <text x="33" y="78">智</text>
+      <text x="77" y="78">行</text>
+    </g>
+    <line x1="55" y1="12" x2="55" y2="98" stroke="#f4ecd8" stroke-width="0.8" opacity="0.25"/>
+    <line x1="12" y1="55" x2="98" y2="55" stroke="#f4ecd8" stroke-width="0.8" opacity="0.25"/>
+  </g>
+
+  <!-- Corner marks -->
+  <g stroke="#b8201c" stroke-width="2.5" fill="none">
+    <polyline points="48,60 48,48 60,48"/>
+    <polyline points="1140,48 1152,48 1152,60"/>
+    <polyline points="48,570 48,582 60,582"/>
+    <polyline points="1140,582 1152,582 1152,570"/>
+  </g>
+</svg>
