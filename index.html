@@ -893,6 +893,96 @@
     margin-bottom: 4px;
   }
 
+  /* ═══════════ ONGOING MEETING NOTE ═══════════ */
+  .ongoing-note {
+    margin-top: 64px;
+    padding: 28px 32px;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    background: rgba(196,184,144,0.08);
+    font-family: 'Playfair Display', serif;
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 1.75;
+    color: var(--ink-soft);
+    text-align: center;
+  }
+  .ongoing-note em {
+    font-style: italic;
+    color: var(--cinnabar);
+    font-weight: 400;
+  }
+  .ongoing-label {
+    display: inline-block;
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-right: 12px;
+  }
+
+  /* ═══════════ TENETS STRIP ═══════════ */
+  .tenets {
+    margin-top: 120px;
+    padding-top: 56px;
+    border-top: 1px solid var(--line);
+  }
+  .tenets-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    text-align: center;
+    margin-bottom: 40px;
+  }
+  .tenets-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+  }
+  .tenet {
+    padding: 0 32px;
+    border-left: 1px solid var(--line);
+    text-align: center;
+  }
+  .tenet:first-child { border-left: none; }
+  .tenet-num {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 14px;
+    color: var(--cinnabar);
+    margin-bottom: 12px;
+  }
+  .tenet h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 400;
+    color: var(--ink);
+    margin-bottom: 8px;
+    line-height: 1.3;
+  }
+  .tenet .zh {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 12px;
+    letter-spacing: 0.2em;
+    color: var(--ink-mute);
+    margin-bottom: 14px;
+  }
+  .tenet p {
+    font-family: 'Playfair Display', serif;
+    font-size: 13px;
+    font-weight: 300;
+    line-height: 1.7;
+    color: var(--ink-soft);
+    font-style: italic;
+  }
+  @media (max-width: 900px) {
+    .tenets-grid { grid-template-columns: 1fr 1fr; gap: 40px 0; }
+    .tenet:nth-child(3) { border-left: none; }
+  }
+
   /* ═══════════ ROLES ═══════════ */
   .roles {
     padding: 180px 0;
@@ -1497,6 +1587,13 @@
             <div class="timeline-desc">Join the lab before you leave. This is only the beginning.</div>
           </div>
         </div>
+
+        <div class="ongoing-note">
+          <span class="ongoing-label">After the Launch —</span>
+          Weekly general meetings every <em>Tuesday, 5:00 – 6:00 PM</em>
+          at <em>BWL-106</em>. Open to all DVC students · no fees ·
+          no prerequisites.
+        </div>
       </div>
     </div>
   </div>
@@ -1564,6 +1661,37 @@
         </p>
         <div class="pillar-tags">
           <span>Market</span><span>Product</span><span>Economics</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Four Tenets Strip -->
+    <div class="tenets">
+      <div class="tenets-label">— Four Founding Tenets · 四大信条 —</div>
+      <div class="tenets-grid">
+        <div class="tenet">
+          <div class="tenet-num">I.</div>
+          <h4>Reverence for Tradition</h4>
+          <div class="zh">敬 古</div>
+          <p>Humility toward the wisdom of those who came before.</p>
+        </div>
+        <div class="tenet">
+          <div class="tenet-num">II.</div>
+          <h4>Courage to Innovate</h4>
+          <div class="zh">创 新</div>
+          <p>Cutting-edge AI, applied in service of cultural revival.</p>
+        </div>
+        <div class="tenet">
+          <div class="tenet-num">III.</div>
+          <h4>Social Responsibility</h4>
+          <div class="zh">担 当</div>
+          <p>Preservation only matters if it is sustainable.</p>
+        </div>
+        <div class="tenet">
+          <div class="tenet-num">IV.</div>
+          <h4>Commercial Awareness</h4>
+          <div class="zh">务 实</div>
+          <p>Ethical cross-disciplinary builders, not idealists alone.</p>
         </div>
       </div>
     </div>
@@ -1703,7 +1831,9 @@
             Campus pop-up markets with 5 to 10 booths. AI-designed
             merchandise, traditional food, live demos. Where members learn
             pricing, consumer behavior, and the economics of cultural
-            craft.
+            craft. Revenue splits <em>50% operations · 30% project teams ·
+            20% public welfare</em> — because sustainability is a promise
+            we make in writing.
           </div>
           <div class="activity-cadence">
             <strong>Twice a Semester</strong>
